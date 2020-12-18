@@ -8,7 +8,7 @@ This is the backend service for the `Quoters` application. It is a `REST API` ba
 - Docker
 - Postgresql
 
-:warning: This is not supposed to be a secure WebAPI and it does not symbolize best practices. It is just an API built in order to showcase a functioning `iOS` (and maybe `Android` and `Windows`) application
+:warning: This is not supposed to be a secure WebAPI and it does not symbolize best practices. It is just a sample API I built to mess around with frontend tech
 
 ## Things not covered by this API
 
