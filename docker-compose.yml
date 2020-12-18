@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  quotersapi:
+    build: .
+    image: quoters/api
+    ports:
+      - 8000:80
+    depends_on:
+      - 'db'
+    networks:
+      - quoters
+    environment:
+      DB_CONNECTION_STRING: 'host=localhost;port=5432;database=quoters;username=postgres;password=password'
+
+  db:
+    image: postgres:latest
+    container_name: quoters
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: quoters
+    networks:
+      - quoters
+    volumes:
+      - quoters:/data/db/quoters
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  pgadmin:
+    container_name: pg_admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-password}
+    volumes:
+      - pgadmin:/data/pgadmin
+    ports:
+      - 5050:80
+    networks:
+      - quoters
+
+networks:
+  quoters:
+    driver: bridge
+
+volumes:
+  quoters:
+  pgadmin:

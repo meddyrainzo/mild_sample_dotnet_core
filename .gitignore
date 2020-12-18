@@ -1,0 +1,21 @@
+.vscode
+.vs
+.idea
+DS_STORE
+
+*.dll
+*.pdb
+
+*obj
+*bin
+*.deps.json
+*.assets.json
+*.nuget.targets
+*.nuget.g.targets
+*.nuget.props
+*.nuget.g.props
+
+*.[Cc]ache
+# But keep track of directories
+!*.[Cc]ache
+
